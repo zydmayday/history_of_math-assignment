@@ -135,21 +135,21 @@ def add_reverse_edges(book_structure, prop, graph):
 		# 	add_reverse_edges(book_structure, prop_key, graph)
 
 graph = pydot.Dot(graph_type='digraph')
-# graph.add_node(pydot.Node('Proposition Conguency', height=0.1, width=0.1, shape='box', label = "Proposition Conguency", color=colors[0], fontcolor=colors[0]))
+graph.add_node(pydot.Node('Proposition Conguency', height=0.1, width=0.1, shape='box', label = "Proposition Conguency", color=colors[0], fontcolor=colors[0]))
 graph.add_node(pydot.Node('Proposition Parallel', height=0.1, width=0.1, shape='box', label = "Proposition Parallel", color=colors[1], fontcolor=colors[1]))
 graph.add_node(pydot.Node('Proposition Area', height=0.1, width=0.1, shape='box', label = "Proposition Area", color=colors[2], fontcolor=colors[2]))
 graph.add_node(pydot.Node('Postulate', height=0.1, width=0.1, shape='box', label = "Postulate", color=colors[3], fontcolor=colors[3]))
-# graph.add_node(pydot.Node('Common Notion', height=0.1, width=0.1, shape='box', label = "Common Notion", color=colors[4], fontcolor=colors[4]))
-# graph.add_edge(pydot.Edge('Proposition Conguency', 'Proposition Parallel', color='white'))
+graph.add_node(pydot.Node('Common Notion', height=0.1, width=0.1, shape='box', label = "Common Notion", color=colors[4], fontcolor=colors[4]))
+graph.add_edge(pydot.Edge('Proposition Conguency', 'Proposition Parallel', color='white'))
 graph.add_edge(pydot.Edge('Proposition Parallel', 'Proposition Area', color='white'))
 graph.add_edge(pydot.Edge('Proposition Area', 'Postulate', color='white'))
-# graph.add_edge(pydot.Edge('Postulate', 'Common Notion', color='white'))
+graph.add_edge(pydot.Edge('Postulate', 'Common Notion', color='white'))
 
-# add_edges(book_structure, 'I.48', graph)
-add_reverse_edges(book_structure, 'I.29', graph)
+add_edges(book_structure, 'I.48', graph)
+# add_reverse_edges(book_structure, 'I.29', graph)
 
-# graph.write_png('I_48.png')
-graph.write_png('I_29.png')
+graph.write_png('I_48.png')
+# graph.write_png('I_29.png')
 
 # graph = pydot.Dot(graph_type='digraph')
 # for file in os.listdir('../git/pydot/test/graphs'):
