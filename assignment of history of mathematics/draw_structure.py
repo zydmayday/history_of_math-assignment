@@ -50,7 +50,7 @@ prop_prop_list = []
 prop_cn_list = []
 prop_post_list = []
 prop_nodes = []
-colors = ['#FF0000', '#00FF00', '#0000FF', '#FF6600', '#FF00FF', ]
+colors = ['#FF0000', '#00FF00', '#0066FF', '#FF6600', '#FF00FF', ]
 
 def add_prop_edges(book_structure, prop, graph):
 	for sub_prop in book_structure[prop]['props']:
@@ -146,10 +146,10 @@ graph.add_edge(pydot.Edge('Proposition Area', 'Postulate', color='white'))
 # graph.add_edge(pydot.Edge('Postulate', 'Common Notion', color='white'))
 
 # add_edges(book_structure, 'I.48', graph)
-add_reverse_edges(book_structure, 'I.19', graph)
+add_reverse_edges(book_structure, 'I.29', graph)
 
 # graph.write_png('I_48.png')
-graph.write_png('I_19.png')
+graph.write_png('I_29.png')
 
 # graph = pydot.Dot(graph_type='digraph')
 # for file in os.listdir('../git/pydot/test/graphs'):
