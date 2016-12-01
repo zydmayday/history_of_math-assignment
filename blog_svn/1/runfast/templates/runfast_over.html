@@ -1,0 +1,20 @@
+<span id='playerInfo' gameover='True'></span>
+
+<span>{{ playerName }} 您好，游戏已经结束！</span>
+<span>当前玩家</span>
+{% for p in cp %}
+<span>{{ p.name }}</span>
+{% endfor %}
+
+<div id='gameInfo'>
+	<span id='currentTurn'>胜者{{ winner }}</span>
+	{% for l in losers %}
+		<span id='loser'>{{ l.name }}</span>
+		<ul>
+			{% for c in l.cards %}
+				<li class='card col-md-1' name='{{ c }}' ><img src="{{ STATIC_URL }}imgs/cards/{{ c }}.png" ></img ></li>
+			{% endfor %}
+		</ul>
+		
+	{% endfor %}
+</div>

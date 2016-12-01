@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block script %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/fantesysix.js"></script>
+{% endblock %}
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">梦幻金花</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+{% include 'fantesysix_home_ajax.html' %}
+{% endblock %}

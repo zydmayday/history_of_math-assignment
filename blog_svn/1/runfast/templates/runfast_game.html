@@ -1,0 +1,35 @@
+<span id='playerInfo' playerName='{{ playerName }}' myTurn={{ myTurn }} isLegal={{ isLegal }}></span>
+
+<span>{{ playerName }} 您好，游戏已经开始！</span>
+<span>当前玩家</span>
+{% for p in cp %}
+<span>{{ p.name }}</span>
+{% endfor %}
+
+<div id='currentInfo'>
+	<span id='currentTurn'>当前走牌者：{{ cn }}</span>
+	<span id='whoPlayed'>上家走牌者：{{ wpn }}</span>
+	<div id='currentcards'>
+		<h3>上家打出的牌</h3>
+		{% for c in cc %}
+		<li class='card col-md-1' name='{{ c }}' isSelected=false><img src="{{ STATIC_URL }}imgs/cards/{{ c }}.png" ></img ></li>
+		{% endfor %}
+	</div>
+</div>
+
+<span>{{ msg }}</span>
+<div id='owncards'>
+	<h3>自己的手牌</h3>
+	{% for c in cards %}
+	<li class='card col-md-1' name='{{ c }}' isSelected=false><img src="{{ STATIC_URL }}imgs/cards/{{ c }}.png" ></img ></li>
+	{% endfor %}
+</div>
+
+{% if myTurn %}
+<form>
+	{% csrf_token %}
+	<button id='playCard' url="{% url 'runfast.views.play' %}">出牌</button>
+	<button id='pass' url="{% url 'runfast.views.passTurn' %}">过</button>
+	
+</form>
+{% endif %}

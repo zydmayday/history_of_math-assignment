@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load hitcount_tags %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">正文</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+	{# 文章主体 #}
+	<div id='article' class='col-md-8'>
+		<h2 id='article-title'>{{ article.title }}</h2>
+		<div id='article-info' class='underline'>
+			<span id='article-post-time'>{{ article.post_time|date:"Y-m-d h:i:s a" }}</span>
+			{% for label in article.labels.all %}
+			<a href="{% url 'article.views.label' label.id %}" class='article-label'>{{ label.name }}</a>
+			{% endfor %}
+		</div>
+		<div id='article-content'>{% autoescape off %}{{ article.markdown_content }}{% endautoescape %}</div>
+		<!-- 
+			<div class="pagination row">
+			    <ul class="pagination">
+			    	{% if articles.has_previous %}
+			            <li><a href="?page={{ articles.previous_page_number }}"><span>&laquo;</span></a></li>
+			        {% else %}
+					    <li class='disabled'><span>&laquo;</span></li>
+			        {% endif %}
+				    {% if articles.has_next %}
+			            <li><a href="?page={{ articles.next_page_number }}"><span>»</span></a></li>
+			        {% else %}
+					    <li class='disabled'><span>»</span></li>
+			        {% endif %}
+				</ul>
+			</div>
+		-->
+	</div>
+
+	<!-- hidcount script -->
+	{% csrf_token %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            {% get_hit_count_javascript for article %}
+        });
+    </script>
+{% endblock %}

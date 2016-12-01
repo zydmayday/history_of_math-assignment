@@ -1,0 +1,6 @@
+<form>
+	{% csrf_token %}
+	<input id='playerName'>
+	<button id='join' url="{% url 'runfast.views.join' %}">加入游戏</button>
+	{{msg}}
+</form>

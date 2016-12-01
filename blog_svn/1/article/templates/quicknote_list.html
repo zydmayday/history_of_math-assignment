@@ -1,0 +1,13 @@
+{% load article_tags %}
+{% for quicknote in quicknotes %}
+<div class='row quicknote' >
+	<div class="quicknote-info">
+		{{ quicknote.post_time|render_date }}
+	</div>
+	<div class="quicknote-note">
+		{{ quicknote.note }}
+	</div>
+
+</div>
+{% endfor %}
+<div id="loading" class="info" data-url="{% url 'article.views.get_quicknotes_by_ajax' last_id %}"></div>

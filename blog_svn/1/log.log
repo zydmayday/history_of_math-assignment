@@ -1,0 +1,11 @@
+2014-12-10 10:25:55,821 WARNING generic.<module> Line:10 F:\blog_svn\1\hitcount\models.py:8: RemovedInDjango19Warning: django.contrib.contenttypes.generic is deprecated and will be removed in Django 1.9. Its contents have been moved to the fields, forms, and admin submodules of django.contrib.contenttypes.
+  from django.contrib.contenttypes import generic
+
+2014-12-10 10:25:56,309 WARNING generic.<module> Line:10 F:\blog_svn\1\hitcount\models.py:8: RemovedInDjango19Warning: django.contrib.contenttypes.generic is deprecated and will be removed in Django 1.9. Its contents have been moved to the fields, forms, and admin submodules of django.contrib.contenttypes.
+  from django.contrib.contenttypes import generic
+
+2014-12-10 10:25:56,473 WARNING util.<module> Line:8 C:\Python27\lib\site-packages\south\db\generic.py:9: RemovedInDjango19Warning: The django.db.backends.util module has been renamed. Use django.db.backends.utils instead.
+  from django.db.backends.util import truncate_name
+
+2014-12-10 10:25:58,200 INFO views.home Line:27 [[{'B': 1}, {'A': 11}, {'C': 9}, {'D': 9}, {'D': 6}, {'A': 12}], [{'D': 12}, {'B': 3}, {'C': 5}, {'A': 8}, {'B': 2}, {'C': 13}]]
+2014-12-10 10:25:58,201 INFO views.home Line:28 [{'D': 12}, {'B': 3}, {'C': 5}, {'A': 8}, {'B': 2}, {'C': 13}]

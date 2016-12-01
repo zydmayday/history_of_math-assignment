@@ -1,0 +1,27 @@
+{# 添加blog的form #}
+<div class='col-md-9 col-md-offset-1'>
+	<form class='form add-article-form' role="form">
+		{% csrf_token %}
+		<div class="row">
+			<label for="article-title">博客标题</label>
+			<input type="text" class="form-control" id="article-title">
+		</div>
+		<div class="row">
+			<label for="article-content">正文</label>
+			<textarea class="form-control" id="article-raw-content" rows="3"></textarea>
+			<textarea class="form-control" id="article-markdown-content" rows="3"></textarea>
+		</div>
+		<div class="row labels">
+			{% for label in labels %}
+				<button type="button" class="btn btn-info label" id='{{ label.id }}'>{{ label.name }}</button>
+			{% endfor %}
+		</div>
+		<div class='row'>
+			<input type='text' id='add-label' name='label_name' placeholder='新的标签'>
+			<button class="btn btn-default" data-url="{% url 'article.views.add_label' %}" id='add-label-btn'>添加</button>
+		</div>
+		<div class='row'>
+			<button class="btn btn-default" id='add-article-btn' data-url="{% url 'article.views.add_article' %}">提交</button>
+		</div>
+	</form>
+</div>

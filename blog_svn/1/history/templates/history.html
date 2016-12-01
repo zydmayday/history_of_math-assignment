@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}历史线{% endblock %}
+{% block style %}<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/history-timeline.css">{% endblock %}
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">历史线</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+	{# 文章主体 #}
+	<div id='history' class='col-md-8'>
+		<div class="container">
+			<div id="timeline">
+				<div class="row timeline-movement timeline-movement-top">
+				    <div class="timeline-badge timeline-future-movement">
+				        <a href="#">
+				            <span class="glyphicon glyphicon-plus"></span>
+				        </a>
+				    </div>
+				    <div class="timeline-badge timeline-filter-movement">
+				        <a href="#">
+				            <span class="glyphicon glyphicon-time"></span>
+				        </a>
+				    </div>
+
+				</div>
+				{% regroup history by date.year as year_list %}
+				{% for year_events in year_list %}
+					<div class="row timeline-movement">
+
+					    <div class="timeline-badge">
+					        <span class="timeline-balloon-date-day">{{year_events.grouper}}</span>
+					        <!--<span class="timeline-balloon-date-month">APR</span>
+					        <span class="timeline-balloon-date-year">2016</span> -->
+					    </div>
+
+					    {% regroup year_events.list by date.month as month_list %}
+					    {% for month_events in month_list %}
+					    	<div class="row timeline-movement">
+						    <div class="timeline-badge">
+						        <span class="timeline-balloon-date-month">{{month_events.grouper}}月</span>
+						        <span class="timeline-balloon-date-year">{{year_events.grouper}}</span>
+						    </div>
+						    {% for event in month_events.list %}
+						    	{% if forloop.counter|divisibleby:2 %}
+						    		<div class="col-sm-offset-6 col-sm-6  timeline-item">
+								        <div class="row">
+								            <div class="col-sm-offset-1 col-sm-11">
+								                <div class="timeline-panel debits">
+								                    <ul class="timeline-panel-ul">
+								                        <li><span class="importo">{{event.title}}</span></li>
+								                        <li><span class="causale">{{event.event}}</span> </li>
+								                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.date}}</small></p> </li>
+								                    </ul>
+								                </div>
+
+								            </div>
+								        </div>
+								    </div>
+								{% else %}	
+									<div class="col-sm-6  timeline-item">
+								        <div class="row">
+								            <div class="col-sm-11">
+								                <div class="timeline-panel credits">
+								                    <ul class="timeline-panel-ul">
+								                        <li><span class="importo">{{event.title}}</span></li>
+								                        <li><span class="causale">{{event.event}}</span> </li>
+								                        <li><p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>{{event.date}}</small></p> </li>
+								                    </ul>
+								                </div>
+
+								            </div>
+								        </div>
+								    </div>	
+						    	{% endif %}	
+						    {% endfor %}
+							</div>
+					    {% endfor %}
+					   
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

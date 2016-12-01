@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}add new blog{% endblock %}
+
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'article.views.edit_article_list' %}">编辑列表</a></li>
+        <li class="active">正文</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+{% include 'edit_article_form.html' %}
+{% endblock %}

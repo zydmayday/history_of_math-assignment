@@ -1,0 +1,45 @@
+{# 文章+分页 #}
+{% load hitcount_tags %}
+<div id='article-summary' class='col-md-8'>
+	{% for article in articles %}
+	<div class='row'>
+		<div class="panel panel-default">
+			<div class="panel-heading" title='{% get_hit_count for article %}'>
+				<div class='article-title'><a href="{% url 'article.views.article' article.id %}" id='article-title'>{{ article.title }}</a></div>
+				<div class='article-info'>
+					<span class='article-post-time'>添加于：{{ article.post_time|date:"Y-m-d h:i:s a" }}</span> | 
+					{% for label in article.labels.all %}
+						<a href="{% url 'article.views.label' label.id %}" class='article-label'>{{ label.name }}</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="panel-body">
+				{{ article.markdown_content|striptags|truncatechars:211 }}
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	<div class="pagination row">
+	    <ul class="pagination">
+	    	{% if articles.has_previous %}
+	            <li><a href="?page={{ articles.previous_page_number }}"><span>&laquo;</span></a></li>
+	        {% else %}
+			    <li class='disabled'><span>&laquo;</span></li>
+	        {% endif %}
+
+		    {% for page in articles.paginator.p_range %}
+				{% if articles.page_number == page %}
+					<li class="active"><span>{{ page }}</span></li>
+				{% else %}
+					<li><a href="?page={{ page }}">{{ page }}</a></li>
+				{% endif %}
+		    {% endfor %}
+		    
+		    {% if articles.has_next %}
+	            <li><a href="?page={{ articles.next_page_number }}"><span>»</span></a></li>
+	        {% else %}
+			    <li class='disabled'><span>»</span></li>
+	        {% endif %}
+		</ul>
+	</div>
+</div>

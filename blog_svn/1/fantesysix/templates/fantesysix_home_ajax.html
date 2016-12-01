@@ -1,0 +1,71 @@
+<div id='fantesysix'>
+	<div id='intro'>
+		<span class='a'>梦幻金花的玩法：</span>
+		<span class='a'>每个人发六张牌，分别配成1,2,3张，三种组合。</span>
+		<span class='a'>每一组分别比大小</span>
+		<span class='a'>第一组K最大，A最小</span>
+		<span class='a'>第二组，数字牌记自己的点数，人头牌为半点，十点半为最大，超过的直接算输</span>
+		<span class='a'>第三组，类似炸金花，三个A最大，其次同花顺，其次同花，其次顺清，再次对子，以此类推</span>
+		<span class='a'>翻倍：第一组K翻倍，第二组十点半翻倍，第三组同花顺翻两倍，豹子翻三倍</span>
+		<span class='a'>第一行的牌为自己的手牌，可以拖拽变换位置，调整好顺序后点确认开始游戏</span>
+	</div>
+	<div class='row'>
+		<ul id='origin-cards' class='cards'>
+			<li class='col-md-1 tag'>自己的牌组</li>
+			{% for card in dealCard %}
+				<li class='card col-md-1' name='{{ card.1 }}'><img src="{{ STATIC_URL }}imgs/{{ card.0 }}.png" ></img ></li>
+			{% endfor %}
+			<li class='col-md-1 score'>得分:{{ player_score }}</li>
+		</ul>
+	</div>
+	<div class='row'>
+		<ul id='program-cards'>
+			<li class='col-md-1 tag'>程序的牌组</li>
+			{% for c in program_cards.0.0 %}
+				<li class='card col-md-1' name='{{ c.1 }}'><img src="{{ STATIC_URL }}imgs/{{ c.0 }}.png" ></img ></li>
+			{% endfor %}
+			<li class='col-md-1 score'>得分: {{ program_cards.0.1 }}</li>
+		</ul>
+	</div>
+	<div class='row'>
+		<ul id='program-cards'>
+			<li class='col-md-1 tag'>程序的牌组</li>
+			{% for c in program_cards.1.0 %}
+				<li class='card col-md-1' name='{{ c.1 }}'><img src="{{ STATIC_URL }}imgs/{{ c.0 }}.png" ></img ></li>
+			{% endfor %}
+			<li class='col-md-1 score'>得分:  {{ program_cards.1.1 }}</li>
+		</ul>
+	</div>
+	<div class='row'>
+		<ul id='program-cards'>
+			<li class='col-md-1 tag'>程序的牌组</li>
+			{% for c in program_cards.2.0 %}
+				<li class='card col-md-1' name='{{ c.1 }}'><img src="{{ STATIC_URL }}imgs/{{ c.0 }}.png" ></img ></li>
+			{% endfor %}
+			<li class='col-md-1 score'>得分:  {{ program_cards.2.1 }}</li>
+		</ul>
+	</div>
+	<div class='row'>
+		<ul id='program-cards'>
+			<li class='col-md-1 tag'>程序的牌组</li>
+			{% for c in program_cards.3.0 %}
+				<li class='card col-md-1' name='{{ c.1 }}'><img src="{{ STATIC_URL }}imgs/{{ c.0 }}.png" ></img ></li>
+			{% endfor %}
+			<li class='col-md-1 score'>得分:  {{ program_cards.3.1 }}</li>
+		</ul>
+	</div>
+	<div class='row'>
+		<ul id='program-cards'>
+			<li class='col-md-1 tag'>程序的牌组</li>
+			{% for c in program_cards.4.0 %}
+				<li class='card col-md-1' name='{{ c.1 }}'><img src="{{ STATIC_URL }}imgs/{{ c.0 }}.png" ></img ></li>
+			{% endfor %}
+			<li class='col-md-1 score'>得分:  {{ program_cards.4.1 }}</li>
+		</ul>
+	</div>
+	
+</div>
+
+
+<button id='confirm' >确认</button>
+<button id='playAgain' url="{% url 'fantesysix.views.home' %}">再玩一把</button>

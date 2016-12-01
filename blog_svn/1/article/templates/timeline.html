@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Timeline{% endblock %}
+
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">Timeline</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+	<div id='timeline-container' class='col-md-8 zyd'>
+		<a href="http://fredsneverland.com/timeline/">借鉴Fred's Neverland</a>
+		<h3>张一东的Timeline<!--<button class="btn btn-default" id="hide-zyd-timeline" type="submit">Hide/Show</button>--></h3>
+		<!-- 属于张一东的timeline -->
+		{% regroup timelines_for_zyd by date.year as timeline_year_list %}
+		{% for timeline_year in timeline_year_list %}
+			<div class='timeline-year' id='{{timeline_year.grouper}}'>{{ timeline_year.grouper }}年</div>
+			<div class='timeline-month-list'>
+				{% regroup timeline_year.list by date.month as timeline_month_list %}
+				{% for timeline_month in timeline_month_list %}
+					<div class='timeline-year-month' id='{{timeline_year.grouper}}-{{timeline_month.grouper}}'>{{ timeline_year.grouper }}年{{ timeline_month.grouper }}月</div>
+					<div class='timeline-list'>
+						{% for timeline in timeline_month.list %}
+							<div class='timeline'>
+								<span class='timeline-date'>{{ timeline.date|date:"d" }}</span>
+								<span type="button" class="timeline-tag" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ timeline.description }}" data-trigger='hover'>
+									{{ timeline.tag }}
+								</span>
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
+
+	<div id='nav-bar' class='col-md-4 nav'>
+		<ul class="nav timeline-sidenav">
+			{% regroup timelines_for_zyd by date.year as timeline_year_list %}
+			{% for timeline_year in timeline_year_list %}
+				<li class='nav-year-list'>
+					<a href='#{{timeline_year.grouper}}'>{{ timeline_year.grouper }}年</a>	
+					{# <div class='timeline-year-month'>{{ timeline_year.grouper }}年{{ timeline_month.grouper }}月</div> #}
+					<!-- <div id='timeline-year'>{{ timeline_year.grouper }}</div> -->
+					<div class='timeline-month-list'>
+						{% regroup timeline_year.list by date.month as timeline_month_list %}
+						<ul class='timeline-sidenav-month'>
+							{% for timeline_month in timeline_month_list %}
+								<li class='nav-month-list'>
+									<a class='timeline-month-anchor' href='#{{timeline_year.grouper}}-{{timeline_month.grouper}}'>{{ timeline_year.grouper }}年{{ timeline_month.grouper }}月</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<!-- 属于李慧的timeline
+	<div id='timeline-container' class='col-md-8 lh'>
+		<h3>李慧的Timeline</h3>
+		{% regroup timelines_for_lh by date.year as timeline_year_list %}
+		{% for timeline_year in timeline_year_list %}
+			<div class='timeline-month-list'>
+				{% regroup timeline_year.list by date.month as timeline_month_list %}
+				{% for timeline_month in timeline_month_list %}
+					<div class='timeline-year-month'>{{ timeline_year.grouper }}年{{ timeline_month.grouper }}月</div>
+					<div class='timeline-list'>
+						{% for timeline in timeline_month.list %}
+							<div class='timeline'>
+								<span class='timeline-date'>{{ timeline.date|date:"d" }}</span>
+								<span type="button" class="timeline-tag" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ timeline.description }}" data-trigger='hover'>
+									{{ timeline.tag }}
+								</span>
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div> -->
+
+
+{% endblock %}

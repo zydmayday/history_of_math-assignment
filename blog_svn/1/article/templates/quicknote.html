@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load hitcount_tags %}
+
+{% block title %}QuickNote{% endblock %}
+
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">QuickNote</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+	{# 随手记 #}
+	<div id='quicknote-list' class='col-md-8'>
+		<div class="alert alert-warning" role="alert">碎片短语，备忘录</div>
+		{% include 'quicknote_list.html' %}
+	</div>
+{% endblock %}

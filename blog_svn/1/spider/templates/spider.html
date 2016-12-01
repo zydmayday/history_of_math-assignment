@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}豆瓣爬虫{% endblock %}
+
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">豆瓣爬虫</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+	{{code_id}}
+{% endblock %}

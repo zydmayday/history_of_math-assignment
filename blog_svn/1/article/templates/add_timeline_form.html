@@ -1,0 +1,21 @@
+{# 添加timeline的form #}
+<div class='col-md-9 col-md-offset-1'>
+	<form class='form add-timeline-form' role="form">
+		{% csrf_token %}
+		<div class="row">
+			<label for="timeline-date">时间</label>
+			<input type="text" class="form-control" id="timeline-date">
+		</div>
+		<div class="row">
+			<label for="timeline-tag">标签</label>
+			<input type="text" class="form-control" id="timeline-tag">
+		</div>
+		<div class="row labels">
+			<label for="timeline-description">描述</label>
+			<input type="text" class="form-control" id="timeline-description">
+		</div>
+		<div class='row'>
+			<button class="btn btn-default" id='add-timeline-btn' data-url="{% url 'article.views.add_timeline' %}">提交</button>
+		</div>
+	</form>
+</div>

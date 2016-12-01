@@ -1,0 +1,6 @@
+<span id='playerInfo' playerName='{{ playerName }}'></span>
+<span>欢迎{{ playerName }}加入游戏！</span>
+<span>当前玩家</span>
+{% for p in cp %}
+<span>{{ p.name }}</span>
+{% endfor %}

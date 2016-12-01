@@ -1,0 +1,337 @@
+@label-color: #562389;
+@navibar-color: #111f36;
+@scroll-nav-color: #999;
+@scroll-nav-active-color: @navibar-color;
+.underline {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 1%;
+}
+body {
+	position: relative;
+	font-family: "PT Sans",sans-serif;
+	font-size: 175%;
+	background-color: rgba(200, 200, 200, 0.16);
+	padding-top: 40px;
+	&.container {
+		margin-bottom: 0px;
+
+		// 顶部导航
+		.navbar {
+			padding-left: 6%;
+			// background-color: #4a4a4a;
+			background-color: @navibar-color;
+		}
+
+		// 博客概述
+		#blog-summary {
+			#blog-name {
+				a{
+					color: @navibar-color;
+				}
+			}
+			ol.breadcrumb {
+				background-color: #FFF;
+				width: 80%;
+			}
+		}
+
+		#blog-main-content {
+			min-height: 420px;
+
+			// 侧边栏
+			#sidebar {
+				#labels {
+					.label {
+						float: left;
+						padding: 0.3em 0.6em 0.2em;
+						background-color: @label-color;
+						transition: background-color 0.15s ease-in-out 0s, color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s;
+						margin: 2px;
+						&:hover {
+							background-color: #8248BB;
+						}
+						a {
+							color: #FFF;
+						}
+					}
+				}
+			}
+
+			// 表单
+			.form {
+				textarea {
+					height: 350px;
+				}
+
+				button {
+					&.label {
+						background-color: @label-color;
+						&.own {
+							background-color: #5cb85c;
+						}
+					}
+				}
+			}
+
+			// 博文列表
+			#article-summary {
+				a#article-title {
+					font-size: 180%;
+				}
+
+				.article-info {
+					.article-label {
+						margin-left: 1%;
+						color: @label-color;
+						transition: background-color 0.15s ease-in-out 0s, color 0.15s ease-in-out 0s, border-color 0.15s ease-in-out 0s;
+    					text-decoration: none;
+    					&:hover{
+    						color: #8248BB;
+    						text-decoration: underline;
+    					}
+					}
+				}
+
+				.pagination {
+					li{
+						span, a{
+							color : @navibar-color;
+						}
+					}
+					li.active {
+						span{
+							color: #eee;
+							background-color: @navibar-color;
+						}
+					}
+					li:first-child, li:last-child{
+						span{
+							color: gray;
+						}
+					}
+				}
+			}
+
+			// 具体博文
+			#article {
+				#article-title {
+
+				}
+				#article-info {
+					.article-label {
+						margin-left: 1%;
+					}
+				}
+				#article-content {
+					margin-top: 3%;
+					p {
+						// text-indent: 2em; // 首行缩进
+					}
+				}
+			}
+
+			// 关于界面
+			#about {
+				ul.list-group {
+					li.list-group-item {
+						background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+						border: 1px solid #ddd;
+						margin-bottom: -1px;
+						// color: black;
+						&:first-child {
+							border-top-left-radius: 4px;
+    						border-top-right-radius: 4px;
+						}
+						&:last-child {
+							border-bottom-left-radius: 4px;
+						    border-bottom-right-radius: 4px;
+						    margin-bottom: 0;
+						}
+						&:hover {
+							background-color: #f5f5f5;
+
+						}
+						&.active {
+							background-color: #428bca;
+						    border-color: #428bca;
+						    color: #fff;
+						    z-index: 2;
+						}
+					}
+				}
+			}
+
+			// QuickNote
+			.quicknote {
+
+				border-top: 1px solid #ccc;
+			    margin: 2% 0;
+			    padding: 1% 0 0;
+
+				.quicknote-info {
+					color: #d9534f;
+					padding-left: 1%;
+					padding-bottom: 1%;
+				}
+
+				.quicknote-note {
+					background-color: #fff;
+					padding: 5px;
+					word-wrap: break-word;
+				}
+			}
+
+			// 时间线
+			#timeline-container {
+
+				&.zyd {
+					color: #606060;
+					border-bottom: 1px groove #111111;
+				}
+				&.lh {
+					color: #FF007F;
+				}
+
+				.timeline-year{
+					font-size: 2em;
+				}
+
+				// font-size: 80%;
+				.timeline-month-list {
+					margin: 0;
+					padding: inherit;
+					font-size: 2.5em;
+
+					.timeline-year-month{
+						font-size: .5em;
+					}
+
+					.timeline-list {
+						font-size: 0.35em;
+						padding-left: 2%;
+						margin-bottom: 1%;
+						-webkit-column-count: 4; /* Chrome, Safari, Opera */
+					    -moz-column-count: 4; /* Firefox */
+					    column-count: 4;
+					    -webkit-column-gap: 30px; /* Chrome, Safari, Opera */
+					    -moz-column-gap: 30px; /* Firefox */
+					    column-gap: 30px;
+						#timeline {
+							// width: 20%;
+							span.timeline-date {
+								margin-right: 4px;
+							}
+							span.timeline-tag {
+								&:hover{
+									cursor: pointer;
+								}
+							}
+						}
+					}
+				}
+				
+			}
+
+			#nav-bar{
+				position: fixed;
+				left: 66%;
+				.timeline-sidenav{
+					a{
+						color: @scroll-nav-color;
+						padding-left: 30px; 
+					}
+					.nav-year-list{
+						&.active{
+							>a{
+								color: @scroll-nav-active-color;
+								border-left: 2px solid black; 
+								padding-left: 28px;
+							}
+							.timeline-month-list{
+								display: block;
+								.timeline-sidenav-month{
+									padding: 0;
+									li.nav-month-list{
+										list-style: none;
+										&.active{
+											a.timeline-month-anchor{
+												border-left: 2px solid black; 
+												font-size: 80%;
+												padding-left: 28px;
+											}
+										}
+									}
+								}
+							}
+						}
+						.timeline-month-list{
+							display: none;
+							.timeline-sidenav-month{
+								li.nav-month-list{
+									list-style: none;
+									a.timeline-month-anchor{
+										font-size: 80%;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			// 梦幻金花
+			#fantesysix {
+				#intro {
+					.a {
+						display: block;
+					}
+				}
+				padding: 1%;
+				#origin-cards, #program-cards {
+					display: block;
+					.card {
+						width: 100px;
+						margin-left: 1%;
+						display: inline-block;
+						list-style: none;
+
+						&:hover {
+							cursor: move;
+						}
+
+						&.cover {
+							background-color: grey;
+						}
+					}
+					.tag, .score {
+						list-style: none;
+					}
+				}
+			}
+
+			#runfast {
+				#owncards {
+					.card {
+						width: 20%;
+						&[isSelected='true'] {
+							width: 25%;
+						}
+					}
+				}
+			}
+		}
+
+		// 页脚
+		footer {
+			width: 100%;
+		    color: #111;
+		    line-height: 25px;
+		    padding: 10px 20px;
+		    border-top: 1px rgba(0, 0, 0, 0.2) dotted;
+
+		    .footer-content {
+		    	float: right;
+		    }
+		}
+	}
+}

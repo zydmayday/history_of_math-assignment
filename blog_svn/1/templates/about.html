@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}首页{% endblock %}
+
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">about</li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+	<div id='about' class='col-md-4'>
+		<div class='row'>
+
+		</div>
+		<div class='row'>
+			<ul class="list-group">
+				<li class="list-group-item active">简介</li>
+				<li class="list-group-item">1992，读书，编程</li>
+				<li class="list-group-item">足球，日语，电影</li>
+				<li class="list-group-item">迷惘的一代</li>
+
+				<li class="list-group-item active">感谢</li>
+				<li class="list-group-item"><a href="docs.djangoproject.com">Django documentation</a></li>
+				<li class="list-group-item"><a href="http://stackoverflow.com/">stackoverflow</a></li>
+				<li class="list-group-item"><a href="http://getbootstrap.com/">Bootstrap</a></li>
+				<li class="list-group-item"><a href="stackedit.io">StackEdit</a></li>
+				<li class="list-group-item"><a href="https://github.com/thornomad/django-hitcount">django-hitcount</a></li>
+
+				<li class="list-group-item active">小玩意</li>
+				<li class="list-group-item"><a href="{% url 'fantesysix.views.home' %}">梦幻金花</a></li>
+				<li class="list-group-item"><a href="{% url 'history.views.history' %}">历史线</a></li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+{% block sidebar %}{% endblock %}

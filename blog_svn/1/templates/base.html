@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    id : 叙述性标签，例如blog-name，blog-author-name
+    class ： 功能性标签，用于具体的控制样式
+ -->
+    <head>
+        <title>Blog - zyd's daily life</title>
+        <meta content='zydmayday(干菓子の日常)是我的个人博客，主要是一些自己的学习心得和日常生活。' name='description'>
+
+        <!-- 新 Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/markdown.default.css">
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+        <script src="{{ STATIC_URL }}js/jquery-1.11.1.min.js"></script>
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}/js/MathJax.js"></script>
+        <script src="{{ STATIC_URL }}js/article.js"></script>
+        <script src="{{ STATIC_URL }}js/jquery-ui-1.11.2.custom/jquery-ui.min.js"></script>
+        {% block script %}{% endblock %}
+        {% block style %}{% endblock %}
+        <!-- 放在最后面，加载完所有的less之后再运行lesscss -->
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+        <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}css/style.less" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/less-1.5.0.min.js"></script>
+        
+        <title>{% block title %}zydmayday blog{% endblock %}</title>
+    </head>
+
+    <body class='container' data-spy="scroll" data-target="#nav-bar">
+        {# 顶部导航栏 #}
+        <div class='row'>
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <ul id='top-nav' class="nav nav-pills" role="tablist">
+                    <li role="presentation" class="active"><a href="#">ZYD</a></li>
+                    <li role="presentation"><a href="{% url 'home' %}">首页</a></li>
+                    <li role="presentation"><a href="{% url 'article.views.get_timelines' %}">时间轴</a></li>
+                    <li role="presentation"><a href="{% url 'article.views.get_quicknotes' %}">随手记</a></li>
+                    <li role="presentation"><a href="{% url 'about' %}">关于</a></li>
+                </ul>
+            </nav>
+        </div>
+        {# 基本信息+面包屑 #}
+        <div class='row'>
+            <div id='blog-summary' class='header underline'>
+                <div class='row'>
+                    <h3 id='blog-name' class="col-md-8">
+                        <a href="{% url 'home' %}">干菓子の日常</a>
+                        <small>This is a blog designed by zyd</small>
+                        <!-- <small><a href="{% url 'article.views.add_article' %}">add new</a></small> -->
+                    </h3>
+                </div>
+                <div class='row'>
+                    {% block breadcrumb %}
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <!-- <li><a href="#">Library</a></li>
+                            <li class="active">Data</li> -->
+                        </ol>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+        {# 主体部分 #}
+        <div id="blog-main-content" class='row'>
+            {% block content %}
+            {% endblock %}
+            {% block sidebar %}
+            <div id='sidebar' class='col-md-4'>
+                <div id='labels'>
+                    {% for label in labels %}
+                        <span id='label' class="label label-info" style="font-size: {{ label.size }}%">
+                            <a href="{% url 'article.views.label' label.id %}">{{ label.name }}</a>
+                        </span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+        {# 页脚 #}
+        <div class='row'>
+            <footer class='bs-footer'>
+                <div class='footer-content'>
+                    zydmayday@gmail.com
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

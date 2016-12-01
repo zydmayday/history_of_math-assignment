@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block script %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/runfast.js"></script>
+{% endblock %}
+{% block breadcrumb %}
+	 <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">跑得快</li>
+    </ol>
+{% endblock %}
+{% block content %}
+<div id='runfast'>
+<form>
+	{% csrf_token %}
+	<button id='reset' url="{% url 'runfast.views.reset' %}">重置</button>
+</form>
+{% include 'runfast_home_ajax.html' %}
+</div>
+{% endblock %}
